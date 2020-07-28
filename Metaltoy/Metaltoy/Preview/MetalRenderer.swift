@@ -12,16 +12,13 @@ class MetalRenderer: NSObject, MTKViewDelegate {
 
     // graphics functions and config state for a render pass
     // (create early in app lifetime and save)
-    private var pipelineState: MTLRenderPipelineState
+    private var computePipelineState: MTLComputePipelineState
 
     // parameter buffers
     var timeBuffer: MTLBuffer?
     var resBuffer: MTLBuffer?
 
-    // render surface geometry buffers
-    private var vertPosBuffer: MTLBuffer?
-    private var texCoordBuffer: MTLBuffer?
-    private var colorBuffer: MTLBuffer?
+    var texture: MTLTexture!
 
     override init() {
         guard let device = MTLCreateSystemDefaultDevice(),
@@ -32,37 +29,28 @@ class MetalRenderer: NSObject, MTKViewDelegate {
         self.commandQueue = commandQueue
 
         // setup a pipeline using a default shader
-        // TODO: allow live shader compilation
-        guard let library = device.makeDefaultLibrary() else {
-            fatalError("Could not load default Metal library")
+        guard let computePipeline = MetalRenderer.buildComputePipeline(device, function: "computeFunc") else {
+            fatalError("Could not build compute pipeline.")
         }
-
-        do {
-            let pipelineStateDescriptor = try MetalRenderer.buildRenderPipelineDescriptor(library,
-                                                                                          vertexFunction: "vertexShader",
-                                                                                          fragmentFunction: "fragmentShader")
-            pipelineState = try device.makeRenderPipelineState(descriptor: pipelineStateDescriptor)
-        } catch {
-            fatalError("Unable to compile render pipeline state due to error:\(error)")
-        }
+        self.computePipelineState = computePipeline
 
         super.init()
 
-        prepareParamBuffers()
-        prepareRenderQuad()
+        let textureLoader = MTKTextureLoader(device: device)
+        let url = Bundle.main.url(forResource: "dog-small", withExtension: "jpg")!
+        texture = try! textureLoader.newTexture(URL: url, options: [:])
+
+//        prepareParamBuffers()
+//        prepareRenderQuad()
     }
 
-    enum RendererError: Error {
-        case shaderLoadError(String)
-    }
-
-    private static func buildRenderPipelineDescriptor(_ library: MTLLibrary, vertexFunction: String, fragmentFunction: String) throws -> MTLRenderPipelineDescriptor {
+    private static func buildRenderPipeline(_ library: MTLLibrary, vertexFunction: String, fragmentFunction: String) -> MTLRenderPipelineDescriptor? {
         // A MTLRenderPipelineDescriptor object that describes the attributes of the render pipeline state.
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
 
         guard let vertexFunction = library.makeFunction(name: vertexFunction),
             let fragmentFunction = library.makeFunction(name: fragmentFunction) else {
-                throw RendererError.shaderLoadError("unable to load shader function")
+                return nil
         }
 
         pipelineDescriptor.vertexFunction = vertexFunction
@@ -73,29 +61,45 @@ class MetalRenderer: NSObject, MTKViewDelegate {
         return pipelineDescriptor
     }
 
+    private static func buildComputePipeline(_ device: MTLDevice, function: String) -> MTLComputePipelineState? {
+        guard let library = device.makeDefaultLibrary() else {
+            fatalError("Could not load default Metal library")
+        }
+
+        do {
+            guard let function = library.makeFunction(name: function) else {
+                return nil
+            }
+            return try device.makeComputePipelineState(function: function)
+        } catch {
+            let compilerMessages = parseCompilerOutput(error.localizedDescription)
+            fatalError("Unable to compile render pipeline state due to error:\(compilerMessages)")
+        }
+    }
+
     private func prepareParamBuffers() {
         timeBuffer = device.makeBuffer(length: MemoryLayout<Float>.size, options: [])
         resBuffer = device.makeBuffer(length: MemoryLayout<SIMD2<Float>>.size, options: [])
     }
 
     private func prepareRenderQuad() {
-        // primitive quad used as flat render plane
-        let quad = RenderQuad()
-
-        vertPosBuffer =
-            device.makeBuffer(bytes: quad.vertices,
-                              length: quad.vertices.count * MemoryLayout.size(ofValue: quad.vertices[0]),
-                              options: .storageModeShared)
-
-        texCoordBuffer =
-            device.makeBuffer(bytes: quad.texCoords,
-                              length: quad.texCoords.count * MemoryLayout.size(ofValue: quad.texCoords[0]),
-                              options: .storageModeShared)
-
-        colorBuffer =
-            device.makeBuffer(bytes: quad.colorArray,
-                              length: quad.colorArray.count * MemoryLayout.size(ofValue: quad.colorArray[0]),
-                              options: .storageModeShared)
+//        // primitive quad used as flat render plane
+//        let quad = RenderQuad()
+//
+//        vertPosBuffer =
+//            device.makeBuffer(bytes: quad.vertices,
+//                              length: quad.vertices.count * MemoryLayout.size(ofValue: quad.vertices[0]),
+//                              options: .storageModeShared)
+//
+//        texCoordBuffer =
+//            device.makeBuffer(bytes: quad.texCoords,
+//                              length: quad.texCoords.count * MemoryLayout.size(ofValue: quad.texCoords[0]),
+//                              options: .storageModeShared)
+//
+//        colorBuffer =
+//            device.makeBuffer(bytes: quad.colorArray,
+//                              length: quad.colorArray.count * MemoryLayout.size(ofValue: quad.colorArray[0]),
+//                              options: .storageModeShared)
     }
 
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
@@ -118,30 +122,27 @@ class MetalRenderer: NSObject, MTKViewDelegate {
         // create a command buffer and use it to create one or more command
         // encoders with render commands
         guard let commandBuffer = commandQueue.makeCommandBuffer(),
-            let renderPassDescriptor = view.currentRenderPassDescriptor,
-            let commandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor),
+            let commandEncoder = commandBuffer.makeComputeCommandEncoder(),
             let drawable = view.currentDrawable else {
                 return
         }
 
-        // setup encoder to use our previously created pass instructions
-        commandEncoder.setRenderPipelineState(pipelineState)
+        // setup encoder to use our previously created pipeline instructions
+        commandEncoder.setComputePipelineState(computePipelineState)
+
+        // input texture
+        commandEncoder.setTexture(texture, index: 0)
+
+        // output texture
+        commandEncoder.setTexture(drawable.texture, index: 1)
 
 
-        // TODO: bind uniforms
-//        var fragUniforms = FragmentUniforms(time: seconds,
-//                                            resolution: float2(Float(1920), Float(1080)),
-//                                            audio0: 1.0,
-//                                            audio1: 1.0,
-//                                            audio2: 1.0)
-//        renderEncoder.setFragmentBytes(&fragUniforms, length: MemoryLayout<FragmentUniforms>.stride, index: 0)
+        let threadGroupCount = MTLSizeMake(8, 8, 1)
+        let threadGroups = MTLSizeMake(drawable.texture.width / threadGroupCount.width,
+                                       drawable.texture.height / threadGroupCount.height,
+                                       1)
+        commandEncoder.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadGroupCount)
 
-
-        // draw quad as triangle strip to make display surface
-        commandEncoder.setVertexBuffer(vertPosBuffer, offset:0, index:0)
-        commandEncoder.setVertexBuffer(texCoordBuffer, offset: 0, index: 1)
-        commandEncoder.setVertexBuffer(colorBuffer, offset:0, index: 2)
-        commandEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: 1)
 
         // enqueu command and present
         commandEncoder.endEncoding()
