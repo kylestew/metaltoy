@@ -35,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FF3F39B024D0D80E006E9DB2 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
+		FF3F39B124D0DA45006E9DB2 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		FF44772E24CFC20900156AAE /* Metaltoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Metaltoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF44773124CFC20900156AAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF44773324CFC20900156AAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				FF44773324CFC20900156AAE /* SceneDelegate.swift */,
 				FF44773124CFC20900156AAE /* AppDelegate.swift */,
 				FF7493D824D090A2004AC93C /* Resources */,
+				FF3F39B124D0DA45006E9DB2 /* BridgingHeader.h */,
 				FF44773724CFC20900156AAE /* Assets.xcassets */,
 				FF44773C24CFC20A00156AAE /* LaunchScreen.storyboard */,
 				FF44773F24CFC20A00156AAE /* Info.plist */,
@@ -148,8 +151,9 @@
 			isa = PBXGroup;
 			children = (
 				FF7493DB24D09478004AC93C /* CompilerOutputParser.swift */,
-				FF45339A24CFE4D5004C921F /* Shaders.metal */,
 				FF45339D24CFE701004C921F /* Quad.swift */,
+				FF3F39B024D0D80E006E9DB2 /* ShaderTypes.h */,
+				FF45339A24CFE4D5004C921F /* Shaders.metal */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -438,6 +442,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.kylestewart.Metaltoy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = ./Metaltoy/BridgingHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -459,6 +464,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.kylestewart.Metaltoy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = ./Metaltoy/BridgingHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -12,13 +12,12 @@ class MetalRenderer: NSObject, MTKViewDelegate {
 
     // graphics functions and config state for a render pass
     // (create early in app lifetime and save)
-    private var computePipelineState: MTLComputePipelineState
+    private let computePipelineState: MTLComputePipelineState
 
-    // parameter buffers
-    var timeBuffer: MTLBuffer?
-    var resBuffer: MTLBuffer?
-
-    var texture: MTLTexture!
+    // shader params
+    private let startTime: Double
+    private let texture: MTLTexture
+    private let uniformsBuffer: MTLBuffer
 
     override init() {
         guard let device = MTLCreateSystemDefaultDevice(),
@@ -29,36 +28,24 @@ class MetalRenderer: NSObject, MTKViewDelegate {
         self.commandQueue = commandQueue
 
         // setup a pipeline using a default shader
-        guard let computePipeline = MetalRenderer.buildComputePipeline(device, function: "computeFunc") else {
+        guard let computePipeline = MetalRenderer.buildComputePipeline(device, function: "grayscaleKernel") else {
             fatalError("Could not build compute pipeline.")
         }
         self.computePipelineState = computePipeline
-
-        super.init()
 
         let textureLoader = MTKTextureLoader(device: device)
         let url = Bundle.main.url(forResource: "dog-small", withExtension: "jpg")!
         texture = try! textureLoader.newTexture(URL: url, options: [:])
 
-//        prepareParamBuffers()
-//        prepareRenderQuad()
-    }
-
-    private static func buildRenderPipeline(_ library: MTLLibrary, vertexFunction: String, fragmentFunction: String) -> MTLRenderPipelineDescriptor? {
-        // A MTLRenderPipelineDescriptor object that describes the attributes of the render pipeline state.
-        let pipelineDescriptor = MTLRenderPipelineDescriptor()
-
-        guard let vertexFunction = library.makeFunction(name: vertexFunction),
-            let fragmentFunction = library.makeFunction(name: fragmentFunction) else {
-                return nil
+        // create uniforms buffer with defaults
+        startTime = CACurrentMediaTime()
+        var initUniforms = Uniforms(time: 0.0)
+        guard let uniformsBuffer = device.makeBuffer(bytes: &initUniforms, length: MemoryLayout<Uniforms>.stride, options: []) else {
+            fatalError("Could not setup Uniforms buffer")
         }
+        self.uniformsBuffer = uniformsBuffer
 
-        pipelineDescriptor.vertexFunction = vertexFunction
-        pipelineDescriptor.fragmentFunction = fragmentFunction
-        pipelineDescriptor.colorAttachments[0].pixelFormat = MTLPixelFormat.bgra8Unorm
-        pipelineDescriptor.colorAttachments[0].isBlendingEnabled = false
-
-        return pipelineDescriptor
+        super.init()
     }
 
     private static func buildComputePipeline(_ device: MTLDevice, function: String) -> MTLComputePipelineState? {
@@ -77,44 +64,13 @@ class MetalRenderer: NSObject, MTKViewDelegate {
         }
     }
 
-    private func prepareParamBuffers() {
-        timeBuffer = device.makeBuffer(length: MemoryLayout<Float>.size, options: [])
-        resBuffer = device.makeBuffer(length: MemoryLayout<SIMD2<Float>>.size, options: [])
-    }
-
-    private func prepareRenderQuad() {
-//        // primitive quad used as flat render plane
-//        let quad = RenderQuad()
-//
-//        vertPosBuffer =
-//            device.makeBuffer(bytes: quad.vertices,
-//                              length: quad.vertices.count * MemoryLayout.size(ofValue: quad.vertices[0]),
-//                              options: .storageModeShared)
-//
-//        texCoordBuffer =
-//            device.makeBuffer(bytes: quad.texCoords,
-//                              length: quad.texCoords.count * MemoryLayout.size(ofValue: quad.texCoords[0]),
-//                              options: .storageModeShared)
-//
-//        colorBuffer =
-//            device.makeBuffer(bytes: quad.colorArray,
-//                              length: quad.colorArray.count * MemoryLayout.size(ofValue: quad.colorArray[0]),
-//                              options: .storageModeShared)
-    }
-
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-        updateResolution(size)
     }
 
-    private func updateResolution(_ size: CGSize) {
-        guard let buffer = resBuffer else {
-            return
-        }
-
-        // TODO: correct buffer writing code (modern)
-        var res = float2(Float(size.width), Float(size.height))
-        let ptr = buffer.contents()
-        memcpy(ptr, &res, MemoryLayout<float2>.size)
+    func update() {
+        // cast? as original struct type to access underlying memory
+        let ptr = uniformsBuffer.contents().bindMemory(to: Uniforms.self, capacity: 1)
+        ptr.pointee.time = Float(CACurrentMediaTime() - startTime)
     }
 
     func draw(in view: MTKView) {
@@ -127,6 +83,8 @@ class MetalRenderer: NSObject, MTKViewDelegate {
                 return
         }
 
+        update()
+
         // setup encoder to use our previously created pipeline instructions
         commandEncoder.setComputePipelineState(computePipelineState)
 
@@ -136,13 +94,16 @@ class MetalRenderer: NSObject, MTKViewDelegate {
         // output texture
         commandEncoder.setTexture(drawable.texture, index: 1)
 
+        // assign uniforms
+        commandEncoder.setBuffer(uniformsBuffer, offset: 0, index: 0)
 
-        let threadGroupCount = MTLSizeMake(8, 8, 1)
-        let threadGroups = MTLSizeMake(drawable.texture.width / threadGroupCount.width,
-                                       drawable.texture.height / threadGroupCount.height,
+        // split texture size into thread groups
+        // NOTE: the last groups may not be full size, shader will need to bounds check
+        let threadGroupSize = MTLSizeMake(16, 16, 1)
+        let threadGroups = MTLSizeMake((drawable.texture.width + threadGroupSize.width - 1) / threadGroupSize.width,
+                                       (drawable.texture.height + threadGroupSize.height - 1) / threadGroupSize.height,
                                        1)
-        commandEncoder.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadGroupCount)
-
+        commandEncoder.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadGroupSize)
 
         // enqueu command and present
         commandEncoder.endEncoding()
