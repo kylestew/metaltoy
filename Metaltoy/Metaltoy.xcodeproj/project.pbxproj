@@ -14,6 +14,11 @@
 		FF44773B24CFC20A00156AAE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF44773A24CFC20A00156AAE /* Preview Assets.xcassets */; };
 		FF44773E24CFC20A00156AAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF44773C24CFC20A00156AAE /* LaunchScreen.storyboard */; };
 		FF44774924CFC20A00156AAE /* MetaltoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44774824CFC20A00156AAE /* MetaltoyTests.swift */; };
+		FF44775624CFCB2300156AAE /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44775524CFCB2300156AAE /* PreviewViewController.swift */; };
+		FF44775824CFCDE500156AAE /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44775724CFCDE500156AAE /* PreviewView.swift */; };
+		FF44775A24CFCEF300156AAE /* MetalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44775924CFCEF300156AAE /* MetalRenderer.swift */; };
+		FF45339B24CFE4D5004C921F /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = FF45339A24CFE4D5004C921F /* Shaders.metal */; };
+		FF45339E24CFE701004C921F /* Quad.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45339D24CFE701004C921F /* Quad.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,11 @@
 		FF44774424CFC20A00156AAE /* MetaltoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetaltoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF44774824CFC20A00156AAE /* MetaltoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaltoyTests.swift; sourceTree = "<group>"; };
 		FF44774A24CFC20A00156AAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF44775524CFCB2300156AAE /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		FF44775724CFCDE500156AAE /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		FF44775924CFCEF300156AAE /* MetalRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalRenderer.swift; sourceTree = "<group>"; };
+		FF45339A24CFE4D5004C921F /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		FF45339D24CFE701004C921F /* Quad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quad.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +89,12 @@
 		FF44773024CFC20900156AAE /* Metaltoy */ = {
 			isa = PBXGroup;
 			children = (
-				FF44773124CFC20900156AAE /* AppDelegate.swift */,
-				FF44773324CFC20900156AAE /* SceneDelegate.swift */,
+				FF45339C24CFE6F6004C921F /* Utilities */,
+				FF44775424CFCB1800156AAE /* Editor */,
+				FF44775324CFCB0F00156AAE /* Preview */,
 				FF44773524CFC20900156AAE /* ContentView.swift */,
+				FF44773324CFC20900156AAE /* SceneDelegate.swift */,
+				FF44773124CFC20900156AAE /* AppDelegate.swift */,
 				FF44773724CFC20900156AAE /* Assets.xcassets */,
 				FF44773C24CFC20A00156AAE /* LaunchScreen.storyboard */,
 				FF44773F24CFC20A00156AAE /* Info.plist */,
@@ -105,6 +118,32 @@
 				FF44774A24CFC20A00156AAE /* Info.plist */,
 			);
 			path = MetaltoyTests;
+			sourceTree = "<group>";
+		};
+		FF44775324CFCB0F00156AAE /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				FF44775924CFCEF300156AAE /* MetalRenderer.swift */,
+				FF44775524CFCB2300156AAE /* PreviewViewController.swift */,
+				FF44775724CFCDE500156AAE /* PreviewView.swift */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
+		FF44775424CFCB1800156AAE /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		FF45339C24CFE6F6004C921F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				FF45339A24CFE4D5004C921F /* Shaders.metal */,
+				FF45339D24CFE701004C921F /* Quad.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,9 +247,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF45339E24CFE701004C921F /* Quad.swift in Sources */,
+				FF44775824CFCDE500156AAE /* PreviewView.swift in Sources */,
+				FF45339B24CFE4D5004C921F /* Shaders.metal in Sources */,
 				FF44773224CFC20900156AAE /* AppDelegate.swift in Sources */,
 				FF44773424CFC20900156AAE /* SceneDelegate.swift in Sources */,
+				FF44775A24CFCEF300156AAE /* MetalRenderer.swift in Sources */,
 				FF44773624CFC20900156AAE /* ContentView.swift in Sources */,
+				FF44775624CFCB2300156AAE /* PreviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +411,7 @@
 				DEVELOPMENT_TEAM = TD4WU76RKW;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Metaltoy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -387,6 +432,7 @@
 				DEVELOPMENT_TEAM = TD4WU76RKW;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Metaltoy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
