@@ -2,15 +2,23 @@ import MetalKit
 
 class MetalRenderer: NSObject, MTKViewDelegate {
 
+    // metal interface to GPU
     let device: MTLDevice
+
+    // organizes command buffers for the GPU to execute
+    // use queue to create one more command buffer objects, then
+    // encode commands into those objects and commit them
     let commandQueue: MTLCommandQueue
+
+    // graphics functions and config state for a render pass
+    // (create early in app lifetime and save)
     private var pipelineState: MTLRenderPipelineState
 
     // parameter buffers
     var timeBuffer: MTLBuffer?
     var resBuffer: MTLBuffer?
 
-    // render surface buffers
+    // render surface geometry buffers
     private var vertPosBuffer: MTLBuffer?
     private var texCoordBuffer: MTLBuffer?
     private var colorBuffer: MTLBuffer?
@@ -99,12 +107,16 @@ class MetalRenderer: NSObject, MTKViewDelegate {
             return
         }
 
+        // TODO: correct buffer writing code (modern)
         var res = float2(Float(size.width), Float(size.height))
         let ptr = buffer.contents()
         memcpy(ptr, &res, MemoryLayout<float2>.size)
     }
 
     func draw(in view: MTKView) {
+        // PER FRAME:
+        // create a command buffer and use it to create one or more command
+        // encoders with render commands
         guard let commandBuffer = commandQueue.makeCommandBuffer(),
             let renderPassDescriptor = view.currentRenderPassDescriptor,
             let commandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor),
@@ -112,13 +124,26 @@ class MetalRenderer: NSObject, MTKViewDelegate {
                 return
         }
 
+        // setup encoder to use our previously created pass instructions
         commandEncoder.setRenderPipelineState(pipelineState)
 
+
+        // TODO: bind uniforms
+//        var fragUniforms = FragmentUniforms(time: seconds,
+//                                            resolution: float2(Float(1920), Float(1080)),
+//                                            audio0: 1.0,
+//                                            audio1: 1.0,
+//                                            audio2: 1.0)
+//        renderEncoder.setFragmentBytes(&fragUniforms, length: MemoryLayout<FragmentUniforms>.stride, index: 0)
+
+
+        // draw quad as triangle strip to make display surface
         commandEncoder.setVertexBuffer(vertPosBuffer, offset:0, index:0)
         commandEncoder.setVertexBuffer(texCoordBuffer, offset: 0, index: 1)
         commandEncoder.setVertexBuffer(colorBuffer, offset:0, index: 2)
         commandEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: 1)
 
+        // enqueu command and present
         commandEncoder.endEncoding()
         commandBuffer.present(drawable)
         commandBuffer.commit()

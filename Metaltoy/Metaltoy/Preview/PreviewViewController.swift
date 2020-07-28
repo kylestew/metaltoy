@@ -20,5 +20,9 @@ class PreviewViewController : UIViewController {
 
         view.addSubview(mtlView)
     }
+
+    func pause() {
+        mtlView.isPaused = true
+    }
 }
 
