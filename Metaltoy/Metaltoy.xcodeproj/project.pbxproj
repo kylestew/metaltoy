@@ -1,0 +1,478 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FF44773224CFC20900156AAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44773124CFC20900156AAE /* AppDelegate.swift */; };
+		FF44773424CFC20900156AAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44773324CFC20900156AAE /* SceneDelegate.swift */; };
+		FF44773624CFC20900156AAE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44773524CFC20900156AAE /* ContentView.swift */; };
+		FF44773824CFC20900156AAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF44773724CFC20900156AAE /* Assets.xcassets */; };
+		FF44773B24CFC20A00156AAE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF44773A24CFC20A00156AAE /* Preview Assets.xcassets */; };
+		FF44773E24CFC20A00156AAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF44773C24CFC20A00156AAE /* LaunchScreen.storyboard */; };
+		FF44774924CFC20A00156AAE /* MetaltoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44774824CFC20A00156AAE /* MetaltoyTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FF44774524CFC20A00156AAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF44772624CFC20900156AAE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF44772D24CFC20900156AAE;
+			remoteInfo = Metaltoy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FF44772E24CFC20900156AAE /* Metaltoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Metaltoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF44773124CFC20900156AAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FF44773324CFC20900156AAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FF44773524CFC20900156AAE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FF44773724CFC20900156AAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF44773A24CFC20A00156AAE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FF44773D24CFC20A00156AAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FF44773F24CFC20A00156AAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF44774424CFC20A00156AAE /* MetaltoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetaltoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF44774824CFC20A00156AAE /* MetaltoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaltoyTests.swift; sourceTree = "<group>"; };
+		FF44774A24CFC20A00156AAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FF44772B24CFC20900156AAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF44774124CFC20A00156AAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FF44772524CFC20900156AAE = {
+			isa = PBXGroup;
+			children = (
+				FF44773024CFC20900156AAE /* Metaltoy */,
+				FF44774724CFC20A00156AAE /* MetaltoyTests */,
+				FF44772F24CFC20900156AAE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FF44772F24CFC20900156AAE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF44772E24CFC20900156AAE /* Metaltoy.app */,
+				FF44774424CFC20A00156AAE /* MetaltoyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF44773024CFC20900156AAE /* Metaltoy */ = {
+			isa = PBXGroup;
+			children = (
+				FF44773124CFC20900156AAE /* AppDelegate.swift */,
+				FF44773324CFC20900156AAE /* SceneDelegate.swift */,
+				FF44773524CFC20900156AAE /* ContentView.swift */,
+				FF44773724CFC20900156AAE /* Assets.xcassets */,
+				FF44773C24CFC20A00156AAE /* LaunchScreen.storyboard */,
+				FF44773F24CFC20A00156AAE /* Info.plist */,
+				FF44773924CFC20A00156AAE /* Preview Content */,
+			);
+			path = Metaltoy;
+			sourceTree = "<group>";
+		};
+		FF44773924CFC20A00156AAE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FF44773A24CFC20A00156AAE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FF44774724CFC20A00156AAE /* MetaltoyTests */ = {
+			isa = PBXGroup;
+			children = (
+				FF44774824CFC20A00156AAE /* MetaltoyTests.swift */,
+				FF44774A24CFC20A00156AAE /* Info.plist */,
+			);
+			path = MetaltoyTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FF44772D24CFC20900156AAE /* Metaltoy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF44774D24CFC20A00156AAE /* Build configuration list for PBXNativeTarget "Metaltoy" */;
+			buildPhases = (
+				FF44772A24CFC20900156AAE /* Sources */,
+				FF44772B24CFC20900156AAE /* Frameworks */,
+				FF44772C24CFC20900156AAE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Metaltoy;
+			productName = Metaltoy;
+			productReference = FF44772E24CFC20900156AAE /* Metaltoy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FF44774324CFC20A00156AAE /* MetaltoyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF44775024CFC20A00156AAE /* Build configuration list for PBXNativeTarget "MetaltoyTests" */;
+			buildPhases = (
+				FF44774024CFC20A00156AAE /* Sources */,
+				FF44774124CFC20A00156AAE /* Frameworks */,
+				FF44774224CFC20A00156AAE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF44774624CFC20A00156AAE /* PBXTargetDependency */,
+			);
+			name = MetaltoyTests;
+			productName = MetaltoyTests;
+			productReference = FF44774424CFC20A00156AAE /* MetaltoyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF44772624CFC20900156AAE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1160;
+				LastUpgradeCheck = 1160;
+				ORGANIZATIONNAME = "Kyle Stewart";
+				TargetAttributes = {
+					FF44772D24CFC20900156AAE = {
+						CreatedOnToolsVersion = 11.6;
+					};
+					FF44774324CFC20A00156AAE = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = FF44772D24CFC20900156AAE;
+					};
+				};
+			};
+			buildConfigurationList = FF44772924CFC20900156AAE /* Build configuration list for PBXProject "Metaltoy" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FF44772524CFC20900156AAE;
+			productRefGroup = FF44772F24CFC20900156AAE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF44772D24CFC20900156AAE /* Metaltoy */,
+				FF44774324CFC20A00156AAE /* MetaltoyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FF44772C24CFC20900156AAE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF44773E24CFC20A00156AAE /* LaunchScreen.storyboard in Resources */,
+				FF44773B24CFC20A00156AAE /* Preview Assets.xcassets in Resources */,
+				FF44773824CFC20900156AAE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF44774224CFC20A00156AAE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FF44772A24CFC20900156AAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF44773224CFC20900156AAE /* AppDelegate.swift in Sources */,
+				FF44773424CFC20900156AAE /* SceneDelegate.swift in Sources */,
+				FF44773624CFC20900156AAE /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF44774024CFC20A00156AAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF44774924CFC20A00156AAE /* MetaltoyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FF44774624CFC20A00156AAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF44772D24CFC20900156AAE /* Metaltoy */;
+			targetProxy = FF44774524CFC20A00156AAE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FF44773C24CFC20A00156AAE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF44773D24CFC20A00156AAE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FF44774B24CFC20A00156AAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FF44774C24CFC20A00156AAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FF44774E24CFC20A00156AAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Metaltoy/Preview Content\"";
+				DEVELOPMENT_TEAM = TD4WU76RKW;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Metaltoy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.kylestewart.Metaltoy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FF44774F24CFC20A00156AAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Metaltoy/Preview Content\"";
+				DEVELOPMENT_TEAM = TD4WU76RKW;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Metaltoy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.kylestewart.Metaltoy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FF44775124CFC20A00156AAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TD4WU76RKW;
+				INFOPLIST_FILE = MetaltoyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.kylestewart.MetaltoyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Metaltoy.app/Metaltoy";
+			};
+			name = Debug;
+		};
+		FF44775224CFC20A00156AAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TD4WU76RKW;
+				INFOPLIST_FILE = MetaltoyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.kylestewart.MetaltoyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Metaltoy.app/Metaltoy";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF44772924CFC20900156AAE /* Build configuration list for PBXProject "Metaltoy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF44774B24CFC20A00156AAE /* Debug */,
+				FF44774C24CFC20A00156AAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF44774D24CFC20A00156AAE /* Build configuration list for PBXNativeTarget "Metaltoy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF44774E24CFC20A00156AAE /* Debug */,
+				FF44774F24CFC20A00156AAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF44775024CFC20A00156AAE /* Build configuration list for PBXNativeTarget "MetaltoyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF44775124CFC20A00156AAE /* Debug */,
+				FF44775224CFC20A00156AAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FF44772624CFC20900156AAE /* Project object */;
+}
