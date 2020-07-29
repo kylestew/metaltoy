@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF3F39B524D0F3A3006E9DB2 /* blend.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF3F39B224D0F3A2006E9DB2 /* blend.jpg */; };
+		FF3F39B624D0F3A3006E9DB2 /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF3F39B324D0F3A3006E9DB2 /* dog.jpg */; };
+		FF3F39B724D0F3A3006E9DB2 /* dog2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF3F39B424D0F3A3006E9DB2 /* dog2.jpg */; };
 		FF44773224CFC20900156AAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44773124CFC20900156AAE /* AppDelegate.swift */; };
 		FF44773424CFC20900156AAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44773324CFC20900156AAE /* SceneDelegate.swift */; };
 		FF44773624CFC20900156AAE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44773524CFC20900156AAE /* ContentView.swift */; };
@@ -19,9 +22,7 @@
 		FF44775A24CFCEF300156AAE /* MetalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44775924CFCEF300156AAE /* MetalRenderer.swift */; };
 		FF45339B24CFE4D5004C921F /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = FF45339A24CFE4D5004C921F /* Shaders.metal */; };
 		FF45339E24CFE701004C921F /* Quad.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45339D24CFE701004C921F /* Quad.swift */; };
-		FF7493DA24D0915A004AC93C /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF7493D924D09159004AC93C /* dog.jpg */; };
 		FF7493DC24D09478004AC93C /* CompilerOutputParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7493DB24D09478004AC93C /* CompilerOutputParser.swift */; };
-		FF7493DE24D097A7004AC93C /* dog-small.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF7493DD24D097A7004AC93C /* dog-small.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,9 @@
 /* Begin PBXFileReference section */
 		FF3F39B024D0D80E006E9DB2 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
 		FF3F39B124D0DA45006E9DB2 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		FF3F39B224D0F3A2006E9DB2 /* blend.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blend.jpg; sourceTree = "<group>"; };
+		FF3F39B324D0F3A3006E9DB2 /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
+		FF3F39B424D0F3A3006E9DB2 /* dog2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog2.jpg; sourceTree = "<group>"; };
 		FF44772E24CFC20900156AAE /* Metaltoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Metaltoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF44773124CFC20900156AAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF44773324CFC20900156AAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,9 +57,7 @@
 		FF44775924CFCEF300156AAE /* MetalRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalRenderer.swift; sourceTree = "<group>"; };
 		FF45339A24CFE4D5004C921F /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		FF45339D24CFE701004C921F /* Quad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quad.swift; sourceTree = "<group>"; };
-		FF7493D924D09159004AC93C /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
 		FF7493DB24D09478004AC93C /* CompilerOutputParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompilerOutputParser.swift; sourceTree = "<group>"; };
-		FF7493DD24D097A7004AC93C /* dog-small.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dog-small.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,8 +163,9 @@
 		FF7493D824D090A2004AC93C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FF7493DD24D097A7004AC93C /* dog-small.jpg */,
-				FF7493D924D09159004AC93C /* dog.jpg */,
+				FF3F39B224D0F3A2006E9DB2 /* blend.jpg */,
+				FF3F39B324D0F3A3006E9DB2 /* dog.jpg */,
+				FF3F39B424D0F3A3006E9DB2 /* dog2.jpg */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -248,9 +251,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF7493DE24D097A7004AC93C /* dog-small.jpg in Resources */,
-				FF7493DA24D0915A004AC93C /* dog.jpg in Resources */,
 				FF44773E24CFC20A00156AAE /* LaunchScreen.storyboard in Resources */,
+				FF3F39B724D0F3A3006E9DB2 /* dog2.jpg in Resources */,
+				FF3F39B624D0F3A3006E9DB2 /* dog.jpg in Resources */,
+				FF3F39B524D0F3A3006E9DB2 /* blend.jpg in Resources */,
 				FF44773B24CFC20A00156AAE /* Preview Assets.xcassets in Resources */,
 				FF44773824CFC20900156AAE /* Assets.xcassets in Resources */,
 			);

@@ -2,6 +2,15 @@ import MetalKit
 
 class MetalRenderer: NSObject, MTKViewDelegate {
 
+    // == SHADER FUNCTION SELECTION ==========
+//    let example = "grayscaleKernel"
+//    let example = "imageBlend"
+    let example = "colorShift"
+//    let example = "glowWorms"
+//    let example = "silex"
+//    let example = "fractalTiling"
+    // =======================================
+
     // metal interface to GPU
     let device: MTLDevice
 
@@ -16,7 +25,8 @@ class MetalRenderer: NSObject, MTKViewDelegate {
 
     // shader params
     private let startTime: Double
-    private let texture: MTLTexture
+    private let tex0: MTLTexture
+    private let tex1: MTLTexture
     private let uniformsBuffer: MTLBuffer
 
     override init() {
@@ -28,14 +38,16 @@ class MetalRenderer: NSObject, MTKViewDelegate {
         self.commandQueue = commandQueue
 
         // setup a pipeline using a default shader
-        guard let computePipeline = MetalRenderer.buildComputePipeline(device, function: "grayscaleKernel") else {
+        guard let computePipeline = MetalRenderer.buildComputePipeline(device, function: example) else {
             fatalError("Could not build compute pipeline.")
         }
         self.computePipelineState = computePipeline
 
         let textureLoader = MTKTextureLoader(device: device)
-        let url = Bundle.main.url(forResource: "dog-small", withExtension: "jpg")!
-        texture = try! textureLoader.newTexture(URL: url, options: [:])
+        let url0 = Bundle.main.url(forResource: "dog", withExtension: "jpg")!
+        let url1 = Bundle.main.url(forResource: "blend", withExtension: "jpg")!
+        tex0 = try! textureLoader.newTexture(URL: url0, options: [.SRGB : false])
+        tex1 = try! textureLoader.newTexture(URL: url1, options: [.SRGB : false])
 
         // create uniforms buffer with defaults
         startTime = CACurrentMediaTime()
@@ -88,11 +100,12 @@ class MetalRenderer: NSObject, MTKViewDelegate {
         // setup encoder to use our previously created pipeline instructions
         commandEncoder.setComputePipelineState(computePipelineState)
 
-        // input texture
-        commandEncoder.setTexture(texture, index: 0)
+        // input textures
+        commandEncoder.setTexture(tex0, index: 0)
+        commandEncoder.setTexture(tex1, index: 1)
 
         // output texture
-        commandEncoder.setTexture(drawable.texture, index: 1)
+        commandEncoder.setTexture(drawable.texture, index: 2)
 
         // assign uniforms
         commandEncoder.setBuffer(uniformsBuffer, offset: 0, index: 0)
@@ -111,4 +124,3 @@ class MetalRenderer: NSObject, MTKViewDelegate {
         commandBuffer.commit()
     }
 }
-
